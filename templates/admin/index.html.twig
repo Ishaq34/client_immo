@@ -1,0 +1,45 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Immovable index{% endblock %}
+
+{% block body %}
+    <h1>Immovable index</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Type</th>
+            <th>Prestation</th>
+            <th>City</th>
+            <th>Price</th>
+            <th>Area</th>
+            <th>Room</th>
+            <th>Bedroom</th>
+            <th>actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for immovable in immovables %}
+            <tr>
+                <td>{{ immovable.type }}</td>
+                <td>{{ immovable.prestation }}</td>
+                <td>{{ immovable.address.city }}</td>
+                <td>{{ immovable.price }}</td>
+                <td>{{ immovable.area }}</td>
+                <td>{{ immovable.room }}</td>
+                <td>{{ immovable.bedroom }}</td>
+                <td>
+                    <a href="{{ path('immovable_show', {'id': immovable.id, 'slug': immovable.slug, 'prestation': immovable.prestation}) }}"><button type="button" class="btn btn-sm btn-outline-secondary m-1">Voir</button></a>
+                    <a href="{{ path('immovable_edit', {'id': immovable.id, 'slug': immovable.slug, 'prestation': immovable.prestation}) }}"><button type="button" class="btn btn-sm btn-outline-secondary m-1">Modifier</button></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('immovable_new') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,17 @@
+<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 shadow-sm navbar__container">
+    <a class="my-0 mr-md-auto font-weight-normal text-white text-decoration-none" href="{{ path('home') }}"><h5 >Agence Immo</h5></a>
+    <nav class="my-2 my-md-0 mr-md-5">
+        <a class="my-0 mr-md-auto font-weight-normal text-white p-5 text-decoration-none" href="{{ path('sales_index') }}">Ventes</a>
+        <a class="my-0 mr-md-auto font-weight-normal text-white text-decoration-none" href="{{ path('locations_index') }}">Locations</a>
+
+    </nav>
+
+
+    {% if app.user.lastName is defined %}
+        <a class="btn btn-outline-secondary mt-1 ml-1" href="{{ path('app_logout') }}">Se Déconnecter</a>
+    {% else %}
+        <a class="btn btn-outline-secondary mt-1 ml-1 d-none" href="{{ path('app_login') }}">Se Connecter</a>
+        <a class="btn btn-outline-success mt-1 ml-1 d-none" href="{{ path('app_register') }}">S'enregistrer</a>
+    {% endif %}
+        <a class="btn btn-outline-secondary mt-1 ml-1" href="{{ path('home_admin') }}">Administration</a>
+</div>

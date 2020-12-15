@@ -1,0 +1,7 @@
+<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 shadow-sm navbar__container">
+    <a class="my-0 mr-md-auto font-weight-normal text-white" href="{{ path('home') }}"><h5 >Agence Immo</h5></a>
+    {% if app.user.lastName is defined %}
+        <a class="btn btn-outline-secondary mt-1 ml-1" href="{{ path('app_logout') }}">Se Déconnecter</a>
+    {% endif %}
+    <input class="form-control form-control-dark admin__searchbar" type="text" placeholder="Search" aria-label="Search">
+</div>

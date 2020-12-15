@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Immovable index{% endblock %}
+
+{% block body %}
+    <img class="img__home--background" src="../images/background.jpg">
+    <div class="container mt-5 pb-5 main__container">
+        <h1 class="text-center home__title">Trouvez votre nouvelle propriété</h1>
+    </div>
+
+    <div class="jumbotron w-50 d-block ml-auto mr-auto home__jumbotron">
+        {{ form_start(form) }}
+        <div class="form-row">
+            <div class="col">
+                {{ form_row(form.prestation) }}
+            </div>
+            <div class="col">
+                {{ form_row(form.type) }}
+            </div>
+            <div class="col">
+                {{ form_row(form.city) }}
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                {{ form_row(form.maxPrice) }}
+            </div>
+            <div class="col">
+                {{ form_row(form.minArea) }}
+            </div>
+            <div class="col">
+                <button type="submit" class="btn btn-secondary w-100 ">Rechercher</button>
+            </div>
+        </div>
+        {{ form_end(form) }}
+    </div>
+
+    <div class="album py-5 immovables__home--container">
+        <div class="container">
+            <h2 class="text-white">Les derniers biens</h2>
+            <div class="row mt-3">
+                {% for immovable in immovables %}
+                    <div class="col-12 col-sm-6 col-md-3">
+                        <div class="card mb-4 shadow-sm">
+                            <div class="img__immovables--container">
+                                <a href="{{ path('immovable_show', {'id': immovable.id, 'slug': immovable.slug, 'prestation': immovable.prestation}) }}">
+                                    <img class="img__immovables" src="../images/{{ immovable.image }}">
+                                </a>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">{{ immovable.prestation|capitalize }} - {{ immovable.address.city|capitalize }}
+                                    {% if immovable.area %} - {{ immovable.area }}m2 {% endif  %}</p>
+                                <p class="card-text">{{ immovable.price|number_format(0, ',', ' ') }}€  - {{ immovable.type|capitalize }}</p>
+                                {% if immovable.room %}
+                                <p class="card-text">{{ immovable.room }} pièces  - {{ immovable.bedroom }} chambres</p>
+                                {% endif  %}</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group d-flex flex-wrap">
+                                        <a href="{{ path('immovable_show', {'id': immovable.id, 'slug': immovable.slug, 'prestation': immovable.prestation}) }}"><button type="button" class="btn btn-sm btn-outline-secondary m-1">Voir</button></a>
+                                        <a href="#"><button type="button" class="btn btn-sm btn-outline-secondary m-1">Sauvegarder</button></a>
+                                        <a href="#"><button type="button" class="btn btn-sm btn-outline-secondary m-1">Envoyer par mail</button></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="container">
+                        <div class="row">
+                            <p class="col-12 text-center">Aucun bien immobilier ne correspond à vos critères</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Immovable{% endblock %}
+
+{% block body %}
+    <div class="container mt-5 pb-5 main__container">
+        <h1 class="text-center ">Trouvez votre nouvelle propriété</h1>
+    </div>
+
+    <div class="jumbotron w-50 d-block ml-auto mr-auto">
+        {{ form_start(form) }}
+            <div class="form-row">
+                <div class="col">
+                    {{ form_row(form.prestation) }}
+                </div>
+                <div class="col">
+                    {{ form_row(form.type) }}
+                </div>
+                <div class="col">
+                    {{ form_row(form.city) }}
+                </div>
+                <div class="col">
+                    {{ form_row(form.maxPrice) }}
+                </div>
+                <div class="col">
+                    {{ form_row(form.minArea) }}
+                </div>
+                <div class="col">
+                    <button type="submit" class="btn btn-secondary">Rechercher</button>
+                </div>
+            </div>
+        {{ form_end(form) }}
+    </div>
+
+
+
+{% endblock %}

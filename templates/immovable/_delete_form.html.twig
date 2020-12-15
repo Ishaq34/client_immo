@@ -1,0 +1,5 @@
+<form method="post" action="{{ path('immovable_delete', {'id': immovable.id, 'slug': immovable.slug}) }}" onsubmit="return confirm('Etes vous certain de vouloir supprimmer ce bien?');">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ immovable.id) }}">
+    <button class="btn">Delete</button>
+</form>

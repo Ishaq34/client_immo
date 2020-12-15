@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Immovable{% endblock %}
+
+{% block body %}
+    <h1>Edit Immovable</h1>
+
+    {{ include('immovable/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('immovable_index') }}">back to list</a>
+
+    {{ include('immovable/_delete_form.html.twig') }}
+{% endblock %}
